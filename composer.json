@@ -1,0 +1,153 @@
+{
+    "name": "pfizer/pfpfizeruscom",
+    "description": "Pfizer pfpfizeruscom site project.",
+    "homepage": "https://www.pfizer.com",
+    "license": "GPL-2.0+",
+    "type": "project",
+    "repositories": [
+        {"type": "composer", "url": "https://repo.packagist.com/pfizer/"},
+        {"packagist.org": false}
+    ],
+    "require": {
+        "composer/installers": "^1.2",
+        "cweagans/composer-patches": "^1.7.0",
+        "davidbarratt/custom-installer": "1.1.0",
+        "jkribeiro/drupal-composer-paranoia-acquia": "~1",
+        "pfizer/pfizer-drupal-scaffold": "~3",
+        "pfizer/pfpfizeruscom_profile": "~1",
+        "webmozart/path-util": "^2.3",
+        "acquia/memcache-settings": "dev-main as dev-master",
+        "drupal/core-recommended": "9.2.10",
+        "drupal/core-composer-scaffold": "9.2.10",
+        "pfizer/pfizer_administration": "2.0.0",
+        "pfizer/pfizer_analytics": "2.1.0",
+        "pfizer/pfizer_content_moderation": "3.1.0",
+        "pfizer/pfizer_core": "4.15.1",
+        "pfizer/pfizer_encrypt": "2.0.0",
+        "pfizer/pfizer_gdpr": "2.1.0",
+        "pfizer/pfizer_key": "2.5.0",
+        "pfizer/pfizer_log": "2.0.0",
+        "pfizer/pfizer_login": "3.5.0",
+        "pfizer/pfizer_performance": "2.4.0",
+        "pfizer/pfizer_quickauth": "2.3.0",
+        "pfizer/pfizer_security": "4.14.0",
+        "pfizer/pfizer_smartsite": "2.3.0",
+        "pfizer/pfizer_task": "2.1.0",
+        "pfizer/pfizer_ugc": "2.2.0",
+        "pfizer/pfizer_ugc_hub": "2.1.0",
+        "pfizer/pfizer_ugc_webform": "2.7.0",
+        "pfizer/pfizer_ugc_pmap": "2.1.0",
+        "pfizer/pfizer_user": "2.1.0",
+        "pfizer/pfizer_xmlsitemap": "4.6.0",
+        "drush/drush": "~10.3.5",
+        "drupal-composer/drupal-security-advisories": "8.x-dev"
+    },
+    "require-dev": {
+        "pfizer/pfizer_dev": "~2",
+        "phpunit/php-code-coverage": "^7",
+        "edisonlabs/gherphalizer": "~2"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "platform": {
+            "php": "7.4.7"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "davidbarratt/custom-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal-composer/drupal-paranoia": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "edisonlabs/gherphalizer": true,
+            "jkribeiro/drupal-composer-paranoia-acquia": true,
+            "pfizer/pfizer-drupal-scaffold": true,
+            "edisonlabs/merge-yaml": true
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GherphalizerScenarios\\": "features/src/"
+        }
+    },
+    "scripts": {
+        "pfizer-drupal-scaffold": "Pfizer\\PfizerDrupalScaffold\\Plugin::scaffold"
+    },
+    "extra": {
+        "_readme": [
+            "This project is for Pfizer private use only.",
+            "Despite the GPL-2.0 license, under no circumstances should the contents of this project including code, documentation or any other file contained herein be distributed, copied, shared or transferred in electronic or other format."
+        ],
+        "pfizer": {
+            "skel": {
+                "package": "pfizer/pfizer-skel-site",
+                "version": "7.4.0.0"
+            },
+            "external-users": "true"
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./app"
+            },
+            "file-mapping": {
+                "[web-root]/robots.txt": false
+            }
+        },
+        "installer-paths": {
+            "app/core": ["type:drupal-core"],
+            "app/modules/contrib/{$name}": ["type:drupal-module"],
+            "app/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "app/themes/contrib/{$name}": ["type:drupal-theme"],
+            "app/libraries/{$name}": ["type:drupal-library"],
+            "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "custom-installer": {
+            "pfizer-module": "app/modules/pfizer/{$name}",
+            "pfizer-profile": "app/profiles/{$name}",
+            "pfizer-theme": "app/themes/pfizer/{$name}"
+        },
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "drupal-paranoia": {
+            "app-dir": "app",
+            "web-dir": "docroot",
+            "excludes": [
+                "core/install.php",
+                "core/modules/statistics/statistics.php",
+                "public-files"
+            ],
+            "asset-files": [
+               "*.webmanifest"
+            ]
+        },
+        "merge-yaml": {
+            "files": [
+                "edison.*",
+                "database.sanitize"
+            ],
+            "locations": [
+                "app/modules",
+                "app/profiles",
+                "vendor/pfizer/platform-pfizer"
+            ],
+            "output-dir": "metadata"
+        },
+        "gherphalizer": {
+            "files": [
+                "*"
+            ],
+            "locations": [
+                "app/profiles/pfpfizeruscom_profile/features"
+            ],
+            "output-dir": "features/src"
+        }
+    }
+}
