@@ -1,2 +1,16 @@
 <iframe style="border: none; top: 0; left: 0; right: 0; bottom: 0;" src="https://players.brightcove.net/1852113022001/g2OtgoAoBs_default/index.html?videoId=6324732943112" width="640" height="360" allowfullscreen="allowfullscreen" data-mce-fragment="1" data-mce-src="https://web.microsoftstream.com/embed/video/c6f56bb4-91ce-4f15-a886-89e621afec2e?autoplay=false&amp;showinfo=true" data-mce-style="border: none; top: 0; left: 0; right: 0; bottom: 0; height: 100%; max-width: 100%;"></iframe>
-https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.pfizer.be%2Ffr-be%2Fpfizer-community-guidelines%3Ffbclid%3DIwAR3rGhXf3pFhUDJdaGsCwFjmaEIqC0k0xETJ_P6ltg1OUO1uJJ1NmTSsUko&h=AT11NOHznMU5-7bWBlwKr2iVov1JMzgFTdl7f7Ri1gTao7U8q-Sjq4VQqhps79O7sVGPOl5qfyII3YEWPjg3z3FIvGueq-muod85ZpAEmtjIalUUONhu6fJLWdfxLY3e6A
+
+
+On the backend, we will be maintaining an Excel file   with the following information:
+
+ 
+Produit	Aire thérapeutique	Département	RMR adresse email	Backup adresse email
+Product	Therapeutic Area	District	MSL email address	Backup email address
+ 
+Requirement: We need to have hands-on to update the file as this occurs very often
+
+@Amine : Please update the excel file with products  
+If the HCP selects the product and keep the therapeutics area field empty, then the algo will search for the MSL and backup email addresses that match the product & district filled in by the HCP and send an email to them.
+If the HCP selects the therapeutics area and keep the Product field empty, then the algo will search for the MSL and backup email addresses matching the therapeutic area & district selected by the HCP and for which the product field is empty and send an email to them.
+If the HCP selects the product and therapeutics area, then the algo will search for the MSL and backup email addresses matching the product & district selected by the HCP and send an email to them.
+
