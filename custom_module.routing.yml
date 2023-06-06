@@ -1,7 +1,0 @@
-custom_module.upload_csv:
-  path: '/custom-module/upload-csv'
-  defaults:
-    _form: '\Drupal\custom_module\Form\CustomModuleForm'
-    _title: 'Upload CSV'
-  requirements:
-    _permission: 'access content'
