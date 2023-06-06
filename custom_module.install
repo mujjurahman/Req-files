@@ -1,0 +1,45 @@
+function custom_module_schema() {
+  $schema['custom_table'] = [
+    'description' => 'Custom table for storing data from CSV',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique ID',
+      ],
+      'product' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Product',
+      ],
+      'therapeutic_area' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Therapeutic Area',
+      ],
+      'district' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'District',
+      ],
+      'msl_email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'MSL Email Address',
+      ],
+      'backup_email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'Backup Email Address',
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}
