@@ -1,0 +1,15 @@
+custom_module.form:
+  path: '/custom_module/form'
+  defaults:
+    _form: '\Drupal\custom_module\Form\CustomModuleForm'
+    _title: 'Custom Module Form'
+  requirements:
+    _permission: 'access content'
+
+custom_module.confirmation:
+  path: '/custom_module/confirmation'
+  defaults:
+    _controller: '\Drupal\custom_module\Controller\CustomModuleController::confirmation'
+    _title: 'Custom Module Confirmation'
+  requirements:
+    _permission: 'access content'
