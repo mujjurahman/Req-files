@@ -1,0 +1,7 @@
+name: 'Custom Module'
+type: module
+description: 'Description of your custom module'
+core_version_requirement: ^8 || ^9
+package: Custom
+dependencies:
+  - drupal:views
