@@ -1,0 +1,19 @@
+custom_module.custom_table:
+  description: 'Custom table for storing CSV data'
+  type: table
+  mapping:
+    product:
+      type: varchar
+      length: 255
+    therapeutic_area:
+      type: varchar
+      length: 255
+    district:
+      type: varchar
+      length: 255
+    msl_email:
+      type: varchar
+      length: 255
+    backup_email:
+      type: varchar
+      length: 255
