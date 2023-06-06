@@ -18,3 +18,12 @@ An entity of type "content" failed to validate with the following errors:
 Revision log message (revision_log): This value should not be null.
 Med connect (title): This value should not be null.
 Please check your mappings.
+
+name: 'Custom Module'
+type: module
+description: 'Description of your custom module'
+core_version_requirement: ^8 || ^9
+package: Custom
+dependencies:
+  - drupal:views
+  - drupal:module_you_depend_on (if you have any dependencies)
