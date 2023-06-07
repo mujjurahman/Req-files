@@ -1,19 +1,32 @@
-custom_module.custom_table:
-  description: 'Custom table for storing CSV data'
-  type: table
-  mapping:
+pfe_med_connect.custom_table:
+  description: 'Custom table for storing data.'
+  fields:
     product:
       type: varchar
       length: 255
+      not null: true
+      description: 'The product name.'
     therapeutic_area:
       type: varchar
       length: 255
+      not null: true
+      description: 'The therapeutic area.'
     district:
       type: varchar
       length: 255
+      not null: true
+      description: 'The district.'
     msl_email:
       type: varchar
       length: 255
+      not null: true
+      description: 'The MSL email address.'
     backup_email:
       type: varchar
       length: 255
+      not null: true
+      description: 'The backup email address.'
+  primary key:
+    - product
+    - therapeutic_area
+    - district
