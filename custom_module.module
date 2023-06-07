@@ -1,1 +1,91 @@
+<?php
+
+/**
+ * @file
+ * Contains pfe_med_connect.module.
+ */
+
+use Drupal\Core\Database\Schema\SchemaObjectExistsException;
+use Drupal\Core\Database\SchemaObjectDoesNotExistException;
+use Drupal\Core\Installer\InstallerKernel;
+
+/**
+ * Implements hook_install().
+ */
+function pfe_med_connect_install() {
+  pfe_med_connect_create_table();
+}
+
+/**
+ * Implements hook_update_N().
+ */
+function pfe_med_connect_update_8001() {
+  pfe_med_connect_create_table();
+}
+
+/**
+ * Create the custom table.
+ */
+function pfe_med_connect_create_table() {
+  $table_name = 'custom_table';
+  $schema = \Drupal::database()->schema();
+
+  try {
+    if ($schema->tableExists($table_name)) {
+      $schema->dropTable($table_name);
+    }
+    $schema->createTable($table_name, pfe_med_connect_get_table_schema());
+    drupal_set_message('Created the custom table.');
+  }
+  catch (SchemaObjectExistsException $e) {
+    drupal_set_message('The custom table already exists.', 'warning');
+  }
+  catch (SchemaObjectDoesNotExistException $e) {
+    drupal_set_message('Failed to create the custom table: ' . $e->getMessage(), 'error');
+  }
+}
+
+/**
+ * Get the schema definition for the custom table.
+ */
+function pfe_med_connect_get_table_schema() {
+  $schema = [
+    'description' => 'Custom table for storing data.',
+    'fields' => [
+      'product' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'The product name.',
+      ],
+      'therapeutic_area' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'The therapeutic area.',
+      ],
+      'district' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'The district.',
+      ],
+      'msl_email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'The MSL email address.',
+      ],
+      'backup_email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'The backup email address.',
+      ],
+    ],
+    'primary key' => ['product', 'therapeutic_area', 'district'],
+  ];
+
+  return $schema;
+}
 
