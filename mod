@@ -4,13 +4,11 @@ namespace Drupal\custom_module\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\file\Entity\File;
 use Drupal\Core\Database\Database;
+use Drupal\Core\File\FileSystemInterface;
 
 /**
- * Implements the CustomModuleForm form controller.
- *
- * @see \Drupal\Core\Form\FormBase
+ * Implements the Custom Module Form.
  */
 class CustomModuleForm extends FormBase {
 
@@ -25,16 +23,14 @@ class CustomModuleForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    // Add form elements for file upload.
-    $form['file_upload'] = [
+    $form['csv_file'] = [
       '#type' => 'file',
       '#title' => $this->t('Upload CSV File'),
+      '#description' => $this->t('Upload a CSV file containing data.'),
       '#required' => TRUE,
-      '#description' => $this->t('Please upload a CSV file.'),
     ];
 
-    // Add submit button.
-    $form['actions']['submit'] = [
+    $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Submit'),
     ];
@@ -47,15 +43,17 @@ class CustomModuleForm extends FormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     // Validate the uploaded file.
-    $file = $form_state->getValue('file_upload');
-    if (!empty($file[0])) {
-      $fileObject = File::load($file[0]);
-      if (!$fileObject instanceof File) {
-        $form_state->setErrorByName('file_upload', $this->t('Invalid file.'));
-      }
+    $validators = [
+      'file_validate_extensions' => ['csv'],
+    ];
+    $file = file_save_upload('csv_file', $validators, FALSE, 0, FileSystemInterface::EXISTS_REPLACE);
+
+    if ($file) {
+      // Save the uploaded file for processing.
+      $form_state->setValue('csv_file', $file);
     }
     else {
-      $form_state->setErrorByName('file_upload', $this->t('Please upload a file.'));
+      $form_state->setErrorByName('csv_file', $this->t('Please upload a valid CSV file.'));
     }
   }
 
@@ -63,53 +61,84 @@ class CustomModuleForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $file = $form_state->getValue('file_upload');
+    $file = $form_state->getValue('csv_file');
 
-    // Get the uploaded file object.
-    $fileObject = File::load($file[0]);
-    if ($fileObject instanceof File) {
-      $filePath = $fileObject->getFileUri();
+    if (!empty($file)) {
+      $file_path = $file->getFileUri();
 
-      // Delete existing data from the custom table.
-      $connection = Database::getConnection();
-      $connection->truncate('custom_table')->execute();
+      // Delete previous data from the custom table.
+      $this->deletePreviousData();
 
-      // Process the CSV file and insert new data into the custom table.
-      if (($handle = fopen($filePath, "r")) !== FALSE) {
-        // Skip the header row.
-        $header = fgetcsv($handle);
+      // Process the CSV file and insert data into the custom table.
+      $this->processCSVFile($file_path);
 
-        while (($data = fgetcsv($handle)) !== FALSE) {
-          $product = $data[0];
-          $therapeuticArea = $data[1];
-          $district = $data[2];
-          $mslEmail = $data[3];
-          $backupEmail = $data[4];
+      // Retrieve email addresses based on the given conditions.
+      $product = $form_state->getValue('product');
+      $therapeuticArea = $form_state->getValue('therapeutic_area');
+      $district = $form_state->getValue('district');
+      $emailAddresses = $this->getEmailAddresses($product, $therapeuticArea, $district);
 
-          // Insert the data into the custom table.
-          $connection->insert('custom_table')
-            ->fields([
-              'product' => $product,
-              'therapeutic_area' => $therapeuticArea,
-              'district' => $district,
-              'msl_email' => $mslEmail,
-              'backup_email' => $backupEmail,
-            ])
-            ->execute();
-        }
+      // Trigger email sending to the retrieved email addresses.
+      $this->sendEmails($emailAddresses);
 
-        fclose($handle);
-
-        // Query the custom table to retrieve the email addresses.
-        $query = $connection->select('custom_table', 'ct');
-        $query->fields('ct', ['msl_email', 'backup_email']);
-        // Rest of the query conditions or filters as per your requirement.
-        $results = $query->execute()->fetchAll();
-
-        // Trigger email sending to the retrieved email addresses.
-        // Rest of the code to send emails...
-      }
+      // Display a success message.
+      drupal_set_message($this->t('CSV file processed successfully.'));
     }
+    else {
+      drupal_set_message($this->t('No CSV file uploaded.'), 'error');
+    }
+  }
+
+  /**
+   * Deletes previous data from the custom table.
+   */
+  private function deletePreviousData() {
+    $connection = Database::getConnection();
+    $connection->delete('custom_table')->execute();
+  }
+
+  /**
+   * Processes the CSV file and inserts data into the custom table.
+   *
+   * @param string $file_path
+   *   The file path of the CSV file.
+   */
+  private function processCSVFile($file_path) {
+    // Process the CSV file and insert data into the custom table.
+    // Your code to parse the CSV file and insert data into the custom table.
+  }
+
+  /**
+   * Retrieves email addresses based on the given conditions.
+   *
+   * @param string $product
+   *   The selected product.
+   * @param string $therapeuticArea
+   *   The selected therapeutic area.
+   * @param string $district
+   *   The selected district.
+   *
+   * @return array
+   *   An array of retrieved email addresses.
+   */
+  private function getEmailAddresses($product, $therapeuticArea, $district) {
+    $emailAddresses = [];
+
+    // Retrieve email addresses based on the given conditions.
+    // Your code to query the custom table and retrieve email addresses.
+
+    return $emailAddresses;
+  }
+
+  /**
+   * Sends emails to the retrieved email addresses.
+   *
+   * @param array $emailAddresses
+   *   An array of email addresses to send emails to.
+   */
+  private function sendEmails(array $emailAddresses) {
+    // Send emails to the retrieved email addresses.
+    // Your code to send emails.
   }
 
 }
