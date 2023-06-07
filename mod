@@ -72,11 +72,10 @@ class CustomModuleForm extends FormBase {
       // Process the CSV file and insert data into the custom table.
       $this->processCSVFile($file_path);
 
-      // Retrieve email addresses based on the given conditions.
+      // Retrieve email addresses based on the selected product and therapeutic area.
       $product = $form_state->getValue('product');
       $therapeuticArea = $form_state->getValue('therapeutic_area');
-      $district = $form_state->getValue('district');
-      $emailAddresses = $this->getEmailAddresses($product, $therapeuticArea, $district);
+      $emailAddresses = $this->getEmailAddresses($product, $therapeuticArea);
 
       // Trigger email sending to the retrieved email addresses.
       $this->sendEmails($emailAddresses);
@@ -109,22 +108,20 @@ class CustomModuleForm extends FormBase {
   }
 
   /**
-   * Retrieves email addresses based on the given conditions.
+   * Retrieves email addresses based on the selected product and therapeutic area.
    *
    * @param string $product
    *   The selected product.
    * @param string $therapeuticArea
    *   The selected therapeutic area.
-   * @param string $district
-   *   The selected district.
    *
    * @return array
    *   An array of retrieved email addresses.
    */
-  private function getEmailAddresses($product, $therapeuticArea, $district) {
+  private function getEmailAddresses($product, $therapeuticArea) {
     $emailAddresses = [];
 
-    // Retrieve email addresses based on the given conditions.
+    // Retrieve email addresses based on the selected product and therapeutic area.
     // Your code to query the custom table and retrieve email addresses.
 
     return $emailAddresses;
