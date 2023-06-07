@@ -1,15 +1,7 @@
-custom_module.form:
-  path: '/custom_module/form'
+pfe_med_connect.form:
+  path: '/custom-form'
   defaults:
-    _form: '\Drupal\custom_module\Form\CustomModuleForm'
-    _title: 'Custom Module Form'
-  requirements:
-    _permission: 'access content'
-
-custom_module.confirmation:
-  path: '/custom_module/confirmation'
-  defaults:
-    _controller: '\Drupal\custom_module\Controller\CustomModuleController::confirmation'
-    _title: 'Custom Module Confirmation'
+    _form: '\Drupal\pfe_med_connect\Form\CustomForm'
+    _title: 'Custom Form'
   requirements:
     _permission: 'access content'
