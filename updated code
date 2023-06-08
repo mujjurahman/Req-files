@@ -4,10 +4,11 @@
 function pfe_med_connect_form_submit(&$form, FormStateInterface $form_state) {
   $csv_file = $form_state->getValue('csv_file');
 
-  if (!empty($csv_file[0])) {
-    $file = \Drupal\file\Entity\File::load($csv_file[0]);
+  if ($csv_file && isset($csv_file[0])) {
+    $file_id = $csv_file[0];
+    $file = File::load($file_id);
 
-    if ($file instanceof \Drupal\file\Entity\File) {
+    if ($file) {
       $file_path = $file->getFileUri();
 
       // Process the CSV file.
