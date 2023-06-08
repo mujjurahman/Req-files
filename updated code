@@ -8,8 +8,8 @@ function pfe_med_connect_form_submit(&$form, FormStateInterface $form_state) {
     $file_id = $csv_file[0];
     $file = \Drupal\file\Entity\File::load($file_id);
 
-    if ($file instanceof \Drupal\file\Entity\File) {
-      $file_path = $file->getFileUri();
+    if ($file instanceof \Drupal\file\FileInterface) {
+      $file_path = \Drupal::service('file_system')->realpath($file->getFileUri());
 
       // Process the CSV file.
       $data = pfe_med_connect_process_csv_file($file_path);
