@@ -1,2 +1,3 @@
 use Drupal\Core\Database\SchemaObjectExistsException;
 use Drupal\Core\Database\SchemaObjectDoesNotExistException;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
