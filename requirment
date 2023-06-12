@@ -1,0 +1,19 @@
+
+Requirment :
+On the backend, we will be maintaining an Excel file   with the following information:
+
+Produit	Aire thérapeutique	Département	RMR adresse email	Backup adresse email
+Product	Therapeutic Area	District	MSL email address	Backup email address
+ 
+We need to have hands-on to update the file as this occurs very often
+
+based on product and Therapeutic Area we will be triggering the mail.
+
+Solution:
+
+Create custom table using custom module
+Add 5 columns to table as in csv
+Create a route to call custom form to upload file
+On Submit handler read csv and insert data into table and delete existing data (Use batch process to insert data in case of large dataset)
+On email form query from table to get information to send it in email
+trigger email
