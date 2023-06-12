@@ -1,2 +1,2 @@
 The website encountered an unexpected error. Please try again later.
-Error: Object of class Drupal\file\Entity\File could not be converted to string in Drupal\Core\Entity\EntityStorageBase->buildCacheId() (line 176 of core\lib\Drupal\Core\Entity\EntityStorageBase.php).
+Error: Cannot use object of type Drupal\file\Entity\File as array in pfe_med_connect_form_submit() (line 108 of profiles\pfpfpfizerfr_profile\modules\pfe_med_connect\pfe_med_connect.module).
