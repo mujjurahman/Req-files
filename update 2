@@ -1,0 +1,18 @@
+/**
+ * Insert the data into the custom_table.
+ */
+function pfe_med_connect_insert_data($data) {
+  $table_name = 'custom_table';
+
+  try {
+    $connection = Database::getConnection();
+    $query = $connection->insert($table_name);
+    foreach ($data as $row) {
+      $query->fields(['product', 'therapeutic_area', 'district', 'msl_email', 'backup_email'])->values($row);
+    }
+    $query->execute();
+  }
+  catch (DatabaseException $e) {
+    \Drupal::messenger()->addError('Failed to insert data into the custom_table: ' . $e->getMessage());
+  }
+}
