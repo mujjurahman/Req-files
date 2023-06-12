@@ -1,0 +1,34 @@
+/**
+ * Form submission handler for the custom form.
+ */
+function pfe_med_connect_form_submit(&$form, FormStateInterface $form_state) {
+  $csv_file = reset($form_state->getValue('csv_file'));
+
+  if (!empty($csv_file)) {
+    $file = File::load($csv_file);
+
+    if ($file) {
+      $file_path = $file->getFileUri();
+
+      // Process the CSV file.
+      $data = pfe_med_connect_process_csv_file($file_path);
+      \Drupal::logger('pfe_med_connect')->debug('CSV data: ' . print_r($data, true));
+
+      if (!empty($data)) {
+        // Truncate the custom_table before inserting new data.
+        pfe_med_connect_truncate_table();
+
+        // Insert the data into the custom_table.
+        pfe_med_connect_insert_data($data);
+
+        \Drupal::messenger()->addMessage('CSV data has been processed and stored in the custom_table.');
+      } else {
+        \Drupal::messenger()->addError('Failed to process the CSV file or no data found.');
+      }
+    } else {
+      \Drupal::messenger()->addError('Failed to load the uploaded file.');
+    }
+  } else {
+    \Drupal::messenger()->addError('No CSV file uploaded.');
+  }
+}
