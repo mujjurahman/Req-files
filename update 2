@@ -16,3 +16,26 @@ function pfe_med_connect_insert_data($data) {
     \Drupal::messenger()->addError('Failed to insert data into the custom_table: ' . $e->getMessage());
   }
 }
+
+
+/**
+ * Create the custom table.
+ */
+function pfe_med_connect_create_table() {
+  $table_name = 'custom_table';
+  $schema = \Drupal::database()->schema();
+
+  try {
+    if ($schema->tableExists($table_name)) {
+      $schema->dropTable($table_name);
+    }
+    $schema->createTable($table_name, pfe_med_connect_get_table_schema());
+    \Drupal::messenger()->addMessage('Created the custom table.');
+  }
+  catch (SchemaObjectExistsException $e) {
+    \Drupal::messenger()->addWarning('The custom table already exists.');
+  }
+  catch (SchemaObjectDoesNotExistException $e) {
+    \Drupal::messenger()->addError('Failed to create the custom table: ' . $e->getMessage());
+  }
+}
