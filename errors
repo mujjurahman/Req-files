@@ -8,7 +8,8 @@ function pfe_med_connect_form_submit(&$form, FormStateInterface $form_state) {
     $file = File::load($csv_file);
 
     if ($file) {
-      $file_path = $file->getFileUri();
+      $file_uri = $file->getFileUri();
+      $file_path = file_create_url($file_uri)->getGeneratedUrl();
 
       // Process the CSV file.
       $data = pfe_med_connect_process_csv_file($file_path);
