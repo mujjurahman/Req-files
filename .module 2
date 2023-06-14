@@ -1,7 +1,8 @@
+<?php
+
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Database\Database;
-use Drupal\Core\Database\Connection;
-use Drupal\Core\Database\DatabaseException;
+use Drupal\Core\Database\SchemaException;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Database\Query\Select;
 use Drupal\Core\Mail\MailManagerInterface;
@@ -9,6 +10,7 @@ use Drupal\Core\Render\RenderContext;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\file\Entity\File;
 
 /**
  * Implements hook_install().
@@ -36,13 +38,10 @@ function pfe_med_connect_create_table() {
       $schema->dropTable($table_name);
     }
     $schema->createTable($table_name, pfe_med_connect_get_table_schema());
-    drupal_set_message('Created the custom table.');
+    \Drupal::messenger()->addMessage('Created the custom table.');
   }
-  catch (SchemaObjectExistsException $e) {
-    drupal_set_message('The custom table already exists.', 'warning');
-  }
-  catch (SchemaObjectDoesNotExistException $e) {
-    drupal_set_message('Failed to create the custom table: ' . $e->getMessage(), 'error');
+  catch (SchemaException $e) {
+    \Drupal::messenger()->addError('Failed to create the custom table: ' . $e->getMessage());
   }
 }
 
@@ -103,11 +102,12 @@ function pfe_med_connect_form_pfe_med_connect_form_alter(&$form, FormStateInterf
 function pfe_med_connect_form_submit(&$form, FormStateInterface $form_state) {
   $csv_file = $form_state->getValue('csv_file');
 
-  if (!empty($csv_file[0])) {
-    $file = \Drupal\file\Entity\File::load($csv_file[0]);
+  if (!empty($csv_file)) {
+    $file = File::load($csv_file);
 
     if ($file) {
-      $file_path = $file->getFileUri();
+      $file_uri = $file->getFileUri();
+      $file_path = file_create_url($file_uri)->getGeneratedUrl();
 
       // Process the CSV file.
       $data = pfe_med_connect_process_csv_file($file_path);
@@ -119,15 +119,15 @@ function pfe_med_connect_form_submit(&$form, FormStateInterface $form_state) {
         // Insert the data into the custom_table.
         pfe_med_connect_insert_data($data);
 
-        drupal_set_message('CSV data has been processed and stored in the custom_table.');
+        \Drupal::messenger()->addMessage('CSV data has been processed and stored in the custom_table.');
       } else {
-        drupal_set_message('Failed to process the CSV file or no data found.', 'error');
+        \Drupal::messenger()->addError('Failed to process the CSV file or no data found.');
       }
     } else {
-      drupal_set_message('Failed to load the uploaded file.', 'error');
+      \Drupal::messenger()->addError('Failed to load the uploaded file.');
     }
   } else {
-    drupal_set_message('No CSV file uploaded.', 'error');
+    \Drupal::messenger()->addError('No CSV file uploaded.');
   }
 }
 
@@ -140,7 +140,7 @@ function pfe_med_connect_process_csv_file($file_path) {
   if (($handle = fopen($file_path, 'r')) !== FALSE) {
     while (($row = fgetcsv($handle, 1000, ',')) !== FALSE) {
       // Skip the header row.
-      if ($row[0] !== 'product') {
+      if ($row[0] !== 'Produit') {
         $data[] = [
           'product' => $row[0],
           'therapeutic_area' => $row[1],
@@ -168,7 +168,7 @@ function pfe_med_connect_truncate_table() {
     $connection->truncate($table_name)->execute();
   }
   catch (DatabaseException $e) {
-    drupal_set_message('Failed to truncate the custom_table: ' . $e->getMessage(), 'error');
+    \Drupal::messenger()->addError('Failed to truncate the custom_table: ' . $e->getMessage());
   }
 }
 
@@ -180,12 +180,20 @@ function pfe_med_connect_insert_data($data) {
 
   try {
     $connection = Database::getConnection();
-    $connection->insert($table_name)
-      ->fields(['product', 'therapeutic_area', 'district', 'msl_email', 'backup_email'])
-      ->values($data)
-      ->execute();
+    foreach ($data as $row) {
+      $connection->insert($table_name)
+        ->fields([
+          'product' => $row['Produit'],
+          'therapeutic_area' => $row['Aire thérapeutique'],
+          'district' => $row['Département'],
+          'msl_email' => $row['RMR adresse email'],
+          'backup_email' => $row['Backup adresse email'],
+        ])
+        ->execute();
+      \Drupal::messenger()->addMessage('Inserted row: ' . print_r($row, true));
+    }
   }
   catch (DatabaseException $e) {
-    drupal_set_message('Failed to insert data into the custom_table: ' . $e->getMessage(), 'error');
+    \Drupal::messenger()->addError('Failed to insert data into the custom_table: ' . $e->getMessage());
   }
 }
