@@ -6,36 +6,24 @@ function pfe_med_connect_insert_data($data) {
 
   try {
     $connection = Database::getConnection();
-    $query = $connection->insert($table_name);
     foreach ($data as $row) {
-      $query->fields(['product', 'therapeutic_area', 'district', 'msl_email', 'backup_email'])->values($row);
+      // Validate the email addresses before inserting them.
+      $msl_email = valid_email_address($row['RMR adresse email']) ? $row['RMR adresse email'] : '';
+      $backup_email = valid_email_address($row['Backup adresse email']) ? $row['Backup adresse email'] : '';
+
+      $connection->insert($table_name)
+        ->fields([
+          'product' => $row['Produit'],
+          'therapeutic_area' => $row['Aire thérapeutique'],
+          'district' => $row['Département'],
+          'msl_email' => $msl_email,
+          'backup_email' => $backup_email,
+        ])
+        ->execute();
+      \Drupal::messenger()->addMessage('Inserted row: ' . print_r($row, true));
     }
-    $query->execute();
   }
   catch (DatabaseException $e) {
     \Drupal::messenger()->addError('Failed to insert data into the custom_table: ' . $e->getMessage());
-  }
-}
-
-
-/**
- * Create the custom table.
- */
-function pfe_med_connect_create_table() {
-  $table_name = 'custom_table';
-  $schema = \Drupal::database()->schema();
-
-  try {
-    if ($schema->tableExists($table_name)) {
-      $schema->dropTable($table_name);
-    }
-    $schema->createTable($table_name, pfe_med_connect_get_table_schema());
-    \Drupal::messenger()->addMessage('Created the custom table.');
-  }
-  catch (SchemaObjectExistsException $e) {
-    \Drupal::messenger()->addWarning('The custom table already exists.');
-  }
-  catch (SchemaObjectDoesNotExistException $e) {
-    \Drupal::messenger()->addError('Failed to create the custom table: ' . $e->getMessage());
   }
 }
