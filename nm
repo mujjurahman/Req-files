@@ -1,0 +1,274 @@
+{
+    "success": true,
+    "message": "",
+    "data": {
+        "config": {
+            "config": {
+                "fields": [
+                    {
+                        "name": "title",
+                        "options": [
+                            {
+                                "value": "Mr",
+                                "label": "Mr"
+                            },
+                            {
+                                "value": "Mrs",
+                                "label": "Mrs"
+                            },
+                            {
+                                "value": "Ms",
+                                "label": "Ms"
+                            },
+                            {
+                                "value": "Miss",
+                                "label": "Miss"
+                            },
+                            {
+                                "value": "Dr",
+                                "label": "Dr"
+                            }
+                        ],
+                        "id": "title",
+                        "label": "title",
+                        "type": "select",
+                        "order": 1
+                    },
+                    {
+                        "name": "fullName",
+                        "id": "fullName",
+                        "label": "fullName",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 2
+                    },
+                    {
+                        "name": "email",
+                        "id": "email",
+                        "label": "email",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 3
+                    },
+                    {
+                        "name": "phoneNumber",
+                        "id": "phoneNumber",
+                        "label": "phoneNumber",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 4
+                    },
+                    {
+                        "name": "grant",
+                        "id": "grant",
+                        "label": "grant",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 5
+                    },
+                    {
+                        "name": "address1",
+                        "id": "address1",
+                        "label": "address1",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 6
+                    },
+                    {
+                        "name": "address2",
+                        "id": "address2",
+                        "label": "address2",
+                        "type": "text",
+                        "validators": [],
+                        "order": 7
+                    },
+                    {
+                        "name": "city",
+                        "id": "city",
+                        "label": "city",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 8
+                    },
+                    {
+                        "name": "postCode",
+                        "id": "postCode",
+                        "label": "postCode",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 9
+                    },
+                    {
+                        "validators": [],
+                        "name": "donationRequest",
+                        "options": [
+                            {
+                                "value": "CML",
+                                "label": "CML Therapeutic Review Audit Service Donation"
+                            },
+                            {
+                                "value": "App",
+                                "label": "My Haemophilia Centre App"
+                            },
+                            {
+                                "value": "Oncology",
+                                "label": "Oncology Grant: Breast Clinical Audit Toolkit"
+                            }
+                        ],
+                        "id": "donationRequest",
+                        "label": "donationRequest",
+                        "type": "select",
+                        "order": 10
+                    },
+                    {
+                        "name": "managerName",
+                        "id": "managerName",
+                        "label": "If you have discussed potential delivery of the selected programme with a Pfizer Account Manager, please enter the Account Manager's name.",
+                        "type": "text",
+                        "validators": [],
+                        "order": 11
+                    },
+                    {
+                        "name": "startDate",
+                        "id": "startDate",
+                        "label": "What is the proposed start date of the project?",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 12
+                    },
+                    {
+                        "name": "endDate",
+                        "id": "endDate",
+                        "label": "What is the proposed end date of the project?",
+                        "type": "text",
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "order": 13
+                    },
+                    {
+                        "validators": [
+                            {
+                                "type": "required"
+                            }
+                        ],
+                        "name": "consent",
+                        "id": "consent",
+                        "label": "Consent",
+                        "type": "checkbox",
+                        "value": "Yes",
+                        "order": 14
+                    }
+                ],
+                "types": [
+                    "email"
+                ],
+                "email": [
+                    {
+                        "cc": [],
+                        "bcc": [],
+                        "subject": "Email to the internal stakeholders for website",
+                        "templateDataMapping": {
+                            "address2": {
+                                "FieldRef": "address2"
+                            },
+                            "city": {
+                                "FieldRef": "city"
+                            },
+                            "endDate": {
+                                "FieldRef": "endDate"
+                            },
+                            "address1": {
+                                "FieldRef": "address1"
+                            },
+                            "fullName": {
+                                "FieldRef": "fullName"
+                            },
+                            "title": {
+                                "FieldRef": "title"
+                            },
+                            "donationRequest": {
+                                "FieldRef": "donationRequest"
+                            },
+                            "managerName": {
+                                "FieldRef": "managerName"
+                            },
+                            "consent": {
+                                "FieldRef": "consent"
+                            },
+                            "phoneNumber": {
+                                "FieldRef": "phoneNumber"
+                            },
+                            "postCode": {
+                                "FieldRef": "postCode"
+                            },
+                            "grant": {
+                                "FieldRef": "grant"
+                            },
+                            "email": {
+                                "FieldRef": "email"
+                            },
+                            "startDate": {
+                                "FieldRef": "startDate"
+                            }
+                        },
+                        "replyTo": "no-reply@pfizer.com",
+                        "description": "Donations & Grants Application",
+                        "from": "no-reply@pfizer.com",
+                        "html": "<html><head></head><body>Hi Stakeholders, <br> Please find the following details. <br> title : {{title}} <br> full_name :  {{fullName}} <br> Contact_email_address :  {{email}} <br> Contact_telephone_number :  {{phoneNumber}} <br> Name_of_healthcare_organisation_that_will_be_the_recipient_of_the_donation_or_grant :  {{grant}} <br> address_1 :  {{address1}} <br> address_2 :  {{address2}} <br> city :  {{city}} <br> postcode :  {{postCode}} <br>donationRequest :  {{donationRequest}} <br> account_manager_name :  {{managerName}} <br> What_is_the_proposed_start_date_of_the_project :  {{startDate}} <br> What_is_the_proposed_end_date_of_the_project :  {{endDate}} <br>  consent :  {{consent}} <br> Thanks & Regards, <br> Pfizer team",
+                        "to": [
+                            "russell.craske@pfizer.com"
+                        ],
+                        "text": "Hi Stakeholders,\n\nPlease find the following details.Thank you for contacting us \n\nRegards,\nPfizer Team"
+                    }
+                ]
+            },
+            "createdAt": "2022-07-28 06:28:37",
+            "configToken": "cdplite2022Ukcontactform-test-22",
+            "createdAtTs": 1658989717,
+            "name": "cdplite2022Ukcontactform",
+            "service": "ms-form",
+            "active": true,
+            "siteName": "pfizercouk",
+            "header": "Test form",
+            "updatedAt": "2023-07-17 11:00:13",
+            "region": "UK",
+            "description": "Contact form",
+            "domain": "cdplite2022pfizercouk-preview.dev.pfizerstatic.io/"
+        }
+    }
+}
