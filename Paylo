@@ -1,0 +1,22 @@
+{
+    "Form Configuration": {
+        "Form Name": "cdplite2022Ukcontactform",
+        "Form Description": "Contact form",
+        "Associated Site": "pfizercouk",
+        "Region": "UK",
+        "Domain": "cdplite2022pfizercouk-preview.dev.pfizerstatic.io/",
+        "Fields": ["title", "fullName", "email", "phoneNumber", "grant", "address1", "address2", "city", "postCode", "donationRequest", "managerName", "startDate", "endDate", "consent"]
+    },
+    "Email Notification Configuration": {
+        "Recipient": "russell.craske@pfizer.com",
+        "Sender": "no-reply@pfizer.com",
+        "Reply-to": "no-reply@pfizer.com",
+        "Subject": "Email to the internal stakeholders for website",
+        "Email Body": "The details provided in the form submission"
+    },
+    "Form Metadata": {
+        "Created At": "2022-07-28 06:28:37",
+        "Updated At": "2023-07-17 11:00:13",
+        "Status": "Active"
+    }
+}
