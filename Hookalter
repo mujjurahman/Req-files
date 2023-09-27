@@ -22,10 +22,10 @@ function getPrefixForDepartment($department_value) {
     $range_values = explode('-', $range);
     if (count($range_values) === 2) {
       [$start, $end] = $range_values;
-      if ((string) $department_value >= (string) $start && (string) $department_value <= (string) $end) {
+      if ($department_value >= $start && $department_value <= $end) {
         return $prefix;
       }
-    } elseif ((string) $department_value === (string) $range) {
+    } elseif ($department_value == $range) {
       return $prefix;
     }
   }
