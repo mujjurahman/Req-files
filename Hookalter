@@ -33,3 +33,26 @@ function getPrefixForDepartment($department_value) {
   // If no specific mapping, return an empty string.
   return '';
 }
+
+/**
+ * Implements hook_form_alter().
+ */
+function your_existing_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Check if the form is your Webform.
+  if ($form_id == 'contact') {
+    // Get the department value from the form field.
+    $department_value = $form_state->getValue('departement');
+
+    // Add a prefix based on the department value to the Telephone field.
+    $prefix = getPrefixForDepartment($department_value);
+    $form['numero_de_telephone']['#default_value'] = $prefix ? $prefix . ' ' : '';
+
+    // Add a conditional state to update the default value when the department changes.
+    $form['numero_de_telephone']['#states'] = [
+      'visible' => [
+        ':input[name="departement"]' => ['filled' => TRUE],
+      ],
+      'value' => [$prefix ? $prefix . ' ' : ''],
+    ];
+  }
+}
