@@ -4,8 +4,8 @@
 function your_existing_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // Check if the form is your Webform.
   if ($form_id == 'contact') {
-    // Add your custom logic here to determine the department value.
-    $department_value = ...;  // Your logic to get the department value.
+    // Get the department value from the form field.
+    $department_value = $form_state->getValue('departement');
 
     // Add a prefix based on the department value to the Telephone field.
     $form['numero_de_telephone']['#default_value'] = getPrefixForDepartment($department_value) . ' '; // Add a space after the prefix.
