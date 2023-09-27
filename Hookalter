@@ -1,4 +1,34 @@
 /**
+ * Custom function to get the prefix based on the department.
+ */
+function getPrefixForDepartment($department_value) {
+  // Mapping of department values to prefixes.
+  $prefix_mapping = [
+    '1' => '+33',
+    '2' => '+33',
+    // ... add more mappings for values 3 to 95 ...
+    '971' => '+590',
+    '972' => '+596',
+    '973' => '+594',
+    '974' => '+262',
+    '975' => '+508',
+    '976' => '+262',
+    '986' => '+681',
+    '987' => '+689',
+    '988' => '+687',
+    '99' => '+377',
+  ];
+
+  // Check if the department value has a specific mapping.
+  if (isset($prefix_mapping[$department_value])) {
+    return $prefix_mapping[$department_value];
+  }
+
+  // If no specific mapping, return an empty string.
+  return '';
+}
+
+/**
  * Implements hook_form_alter().
  */
 function your_existing_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
@@ -9,21 +39,5 @@ function your_existing_module_form_alter(&$form, \Drupal\Core\Form\FormStateInte
 
     // Add a prefix based on the department value to the Telephone field.
     $form['numero_de_telephone']['#default_value'] = getPrefixForDepartment($department_value) . ' '; // Add a space after the prefix.
-  }
-}
-
-/**
- * Custom function to get the prefix based on the department.
- */
-function getPrefixForDepartment($department_value) {
-  // Replace this with your logic to determine the prefix based on the department.
-  switch ($department_value) {
-    case '1295':
-      return '+33';
-    case '9712':
-      return '+590';
-    // Add more cases for other department values.
-    default:
-      return '';
   }
 }
