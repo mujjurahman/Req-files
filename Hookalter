@@ -1,0 +1,29 @@
+/**
+ * Implements hook_form_alter().
+ */
+function your_existing_module_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Check if the form is your Webform.
+  if ($form_id == 'contact') {
+    // Add your custom logic here to determine the department value.
+    $department_value = ...;  // Your logic to get the department value.
+
+    // Add a prefix based on the department value to the Telephone field.
+    $form['numero_de_telephone']['#default_value'] = getPrefixForDepartment($department_value) . ' '; // Add a space after the prefix.
+  }
+}
+
+/**
+ * Custom function to get the prefix based on the department.
+ */
+function getPrefixForDepartment($department_value) {
+  // Replace this with your logic to determine the prefix based on the department.
+  switch ($department_value) {
+    case '1295':
+      return '+33';
+    case '9712':
+      return '+590';
+    // Add more cases for other department values.
+    default:
+      return '';
+  }
+}
