@@ -1,0 +1,38 @@
+(function ($) {
+  $(document).ready(function () {
+    $('#edit-departement').change(function () {
+      var departmentValue = $(this).val();
+      var telephoneField = $('#edit-numero-de-telephone');
+      var prefix = getPrefixForDepartment(departmentValue);
+      telephoneField.val(prefix);
+    });
+
+    $('#edit-numero-de-telephone').on('input', function () {
+      var cleanedValue = $(this).val().replace(/[^0-9]/g, '');
+      $(this).val(cleanedValue);
+    });
+
+    function getPrefixForDepartment(departmentValue) {
+      switch (departmentValue) {
+        case '1295':
+          return '+33';
+        case '9712':
+          return '+590';
+        case '976':
+          return '+262';
+        case '977':
+          return '+508';
+        case '986':
+          return '+681';
+        case '987':
+          return '+689';
+        case '988':
+          return '+687';
+        case '99':
+          return '+377';
+        default:
+          return '';
+      }
+    }
+  });
+})(jQuery);
