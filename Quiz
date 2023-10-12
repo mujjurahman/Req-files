@@ -20,14 +20,24 @@
     <script>
         const quizData = [
             {
-                question: "Your first question?",
-                options: ["Option 1", "Option 2", "Option 3"],
-                correctAnswer: "Option 1"
+                question: "What is your name?",
+                options: ["Anu", "Deep", "Rah"],
+                correctAnswer: "Rah"
             },
-            // Add more questions here
+            {
+                question: "What country do you live in?",
+                options: ["India", "China", "Sri Lanka"],
+                correctAnswer: "India"
+            },
+            {
+                question: "Which state do you live in?",
+                options: ["Telangana", "Kerala", "Bengal"],
+                correctAnswer: "Telangana"
+            }
         ];
 
         let currentQuestion = 0;
+        let userAnswers = []; // Store user's answers
         const questionElement = document.getElementById("question");
         const optionsElement = document.getElementById("options");
 
@@ -46,13 +56,13 @@
 
         function checkAnswer(selectedOption) {
             const currentQuizData = quizData[currentQuestion];
-            if (selectedOption === currentQuizData.correctAnswer) {
-                // Handle correct answer
-                alert("Correct!");
-            } else {
-                // Handle incorrect answer
-                alert("Incorrect!");
-            }
+            userAnswers.push(selectedOption);
+
+            // Display correct answer
+            alert("Correct Answer: " + currentQuizData.correctAnswer);
+
+            // Move to the next question
+            nextQuestion();
         }
 
         function nextQuestion() {
@@ -61,8 +71,13 @@
                 loadQuestion();
             } else {
                 // Quiz is finished
-                alert("Quiz finished!");
+                showResults();
             }
+        }
+
+        function showResults() {
+            // Display user's answers
+            alert("Your Answers: " + userAnswers.join(", "));
         }
 
         // Initial load
