@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        /* Add your styling here */
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <div id="question-container">
+            <p id="question"></p>
+            <ul id="options"></ul>
+        </div>
+        <button id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Your first question?",
+                options: ["Option 1", "Option 2", "Option 3"],
+                correctAnswer: "Option 1"
+            },
+            // Add more questions here
+        ];
+
+        let currentQuestion = 0;
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+
+        function loadQuestion() {
+            const currentQuizData = quizData[currentQuestion];
+            questionElement.innerText = currentQuizData.question;
+
+            optionsElement.innerHTML = "";
+            currentQuizData.options.forEach((option, index) => {
+                const li = document.createElement("li");
+                li.innerText = option;
+                li.addEventListener("click", () => checkAnswer(option));
+                optionsElement.appendChild(li);
+            });
+        }
+
+        function checkAnswer(selectedOption) {
+            const currentQuizData = quizData[currentQuestion];
+            if (selectedOption === currentQuizData.correctAnswer) {
+                // Handle correct answer
+                alert("Correct!");
+            } else {
+                // Handle incorrect answer
+                alert("Incorrect!");
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                // Quiz is finished
+                alert("Quiz finished!");
+            }
+        }
+
+        // Initial load
+        loadQuestion();
+    </script>
+</body>
+</html>
