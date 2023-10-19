@@ -1,1 +1,18 @@
-<iframe frameborder="0" src="https://proformat.typeform.com/to/aESMJp6Y"></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>5 DUBBI DA SCIOGLIERE</title>
+    <style>
+        body, iframe {
+            margin: 0;
+            padding: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+    <iframe frameborder="0" src="https://proformat.typeform.com/to/aESMJp6Y" style="width: 100%; height: 100vh;" data-tf-widget="your-widget-data" data-tf-opacity="your-opacity-data" data-custom-attribute="your-custom-data"></iframe>
+</body>
+</html>
