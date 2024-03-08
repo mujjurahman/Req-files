@@ -1,0 +1,103 @@
+<div id="i5mlf" class="block-3695931-cid block-2260867-cid block-1617264-cid form-container">
+  <div id="i6wai" class="block-3695931-cid block-2260867-cid block-1617264-cid contact-form">
+    <form id="form">
+      <h2 id="i4h7x">Kontaktformular
+      </h2>
+      <p id="i2vtj" class="block-3695931-cid block-2260867-cid block-1617264-cid Anrede">Anrede
+        <span id="ir2hf">*</span>
+      </p>
+      <input type="radio" id="frau" name="radio-text-german" required="1" value="Frau" class="block-3695931-cid block-2260867-cid block-1617264-cid radio-vaildation firstradio german-first radio-german"/>
+      <label for="frau">Frau</label>
+      <br id="iz6h7"/>
+      <input type="radio" id="herr" name="radio-text-german" required="1" value="Herr" class="block-3695931-cid block-2260867-cid block-1617264-cid radio-vaildation secondradio german-second radio-german"/>
+      <label for="herr">Herr</label>
+      <br id="i1lvv"/>
+      <br id="iwwja"/>
+      <label for="titel">Titel</label>
+      <br id="i2t95"/>
+      <input type="text" name="titel" id="titel" max-length="128" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style title"/>
+      <br id="i4qp9"/>
+      <br id="ii31z"/>
+      <label for="vorname">Vorname<span id="i2wlj">*</span></label>
+      <br id="i2try"/>
+      <input type="text" name="vorname" id="vorname" max-length="128" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style firstname"/>
+      <br id="iv5bt"/>
+      <br id="iqp5c"/>
+      <label for="name">Name<span id="i1qbe">*</span></label>
+      <br id="iefqg5"/>
+      <input type="text" name="name" id="name" max-length="128" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style lastname"/>
+      <br id="ip7rr3"/>
+      <br id="iv9yj5"/>
+      <label for="strasse">Strasse<span id="i27qrm">*</span> </label>
+      <br id="ik8oda"/>
+      <input type="text" name="strasse" id="strasse" max-length="128" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style street"/>
+      <br id="i0xogj"/>
+      <br id="ipm4ti"/>
+      <label for="plz">PLZ<span id="if9vfl">*</span> </label>
+      <br id="ii3vym"/>
+      <input type="text" name="plz" id="plz" max-length="128" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style postcode"/>
+      <br id="ih1g9w"/>
+      <br id="ixz0uq"/>
+      <label for="ort">Ort<span id="isdggc">*</span> </label>
+      <br id="iehryr"/>
+      <input type="text" name="ort" id="ort" max-length="123" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style location"/>
+      <br id="idnzj3"/>
+      <br id="ikerni"/>
+      <label for="produktname">Produktname<span id="iq18lb">*</span> </label>
+      <br id="ilghpn"/>
+      <input type="text" name="produktname" id="produktname" max-length="128" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style productname"/>
+      <br id="iwmm8t"/>
+      <br id="ijrws5"/>
+      <label for="art-der-meldung">Art der Meldung<span id="ilyd6k">*</span> </label>
+      <br id="i85w5n"/>
+      <select id="notification" name="art-der-meldung" class="block-3695931-cid block-2260867-cid block-1617264-cid german-select select-style"><option value="Auswählen" id="i0acdi">- Auswählen - </option><option selected="selected" value="Unerwünschte Arzneimittelwirkung" id="iciogp">Unerwünschte Arzneimittelwirkung</option><option value="Andere Ereignisse" id="izlptc">Andere Ereignisse</option><option value="Produktbeanstandung" id="itgf64">Produktbeanstandung</option></select>
+      <br id="iymtjn"/>
+      <br id="ie82tr"/>
+      <label for="e-mail">E-Mail<span id="iuaaye">*</span> </label>
+      <br id="if7qzy"/>
+      <input type="email" name="e-mail" max-length="254" id="adresse e-mail" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style email-address"/>
+      <br id="ic0rij"/>
+      <br id="izldqk"/>
+      <label for="telefon">Telefon</label>
+      <br id="i9mxci"/>
+      <input type="number" name="telefon" max-length="128" id="telefon" class="block-3695931-cid block-2260867-cid block-1617264-cid input-style phonenumber"/>
+      <br id="if6hq4"/>
+      <br id="i1b5fz"/>
+      <label for="ihre meldung">Ihre Meldung<span id="itw0bc">*</span></label>
+      <br id="iqsv2u"/>
+      <textarea id="textarea" name="ihre meldung" rows="8" cols="50" required="1" class="block-3695931-cid block-2260867-cid block-1617264-cid textfield"></textarea>
+      <br id="i0ioet"/>
+      <p id="ic59he" class="block-3695931-cid block-2260867-cid block-1617264-cid pflichtfelder">*Pflichtfelder
+      </p>
+      <p id="ixznfh" class="block-3695931-cid block-2260867-cid block-1617264-cid p2">
+        <b id="ils3kw">DATENSCHUTZ:
+        </b>
+        <br id="ia0u3f"/>
+        <i id="isul89"> Die uns übermittelten Daten werden vertraulich behandelt und angemessen im Rahmen der gesetzlichen Bestimmungen vor Zugriffen durch Unbefugte gesichert. Mit der Übermittlung der Daten auf diesem Formular stimmen Sie der zweckgebundenen Bearbeitung dieser Daten zu. Die Daten werden für interne Zwecke (z.B. Aufnahme in firmeninterne internationale Datenbanken, die sich in der Schweiz oder auch im Ausland befinden) und für die gesetzlich oder behördlich vorgeschriebene Anzeige an die zuständigen nationalen und/oder internationalen Behörden verwendet.
+        </i>
+      </p>
+      <h4 id="iukq7v">Math question
+        <span id="in1op9">*</span>
+      </h4>
+      <div id="irj4qk">
+        <p id="question">
+        </p>
+        <input type="textbox" required="1" name="answer" id="answer" class="block-3695931-cid block-2260867-cid block-1617264-cid answer-input"/>
+        <p id="irkiu1" class="block-3695931-cid block-2260867-cid block-1617264-cid p3">Solve this simple math problem and enter the result. E.g. for 1+3, enter 4.
+        </p>
+      </div>
+      <!-- Error -->
+      <div id="math-error-modal" class="block-3695931-cid block-2260867-cid block-1617264-cid w3-modal">
+        <div id="id38al" class="block-3695931-cid block-2260867-cid block-1617264-cid error-modal-content">
+          <div id="i2qrqs" class="block-3695931-cid block-2260867-cid block-1617264-cid error-container">
+            <div id="result">
+            </div>
+            <span onclick="document.getElementById('math-error-modal').style.display='none'" id="ifcxg8" class="block-3695931-cid block-2260867-cid block-1617264-cid error-modal-button w3-display-topright">×</span>
+          </div>
+        </div>
+      </div>
+      <!-- Error -->
+      <input type="submit" value="ABSENDEN" id="submit-button" onclick="document.getElementById('math-error-modal').style.display='block'" class="block-3695931-cid block-2260867-cid block-1617264-cid absenden-btn submit-button"/>
+    </form>
+  </div>
+</div>
