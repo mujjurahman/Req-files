@@ -1,0 +1,102 @@
+<div id="i6rai" class="block-1569769-cid form-container">
+  <div id="im5md" class="block-1569769-cid contact-form french-custom-form">
+    <form id="form">
+      <h2 id="i7qi9">Formulaire de contact
+      </h2>
+      <p id="iceck" class="block-1569769-cid civilite">Civilité
+      </p>
+      <input type="radio" id="frau" name="radio-text" value="Madame" class="block-1569769-cid firstradio"/>
+      <label for="madame">Madame</label>
+      <br id="itp54"/>
+      <input type="radio" id="herr" name="radio-text" value="Monsieur" class="block-1569769-cid secondradio"/>
+      <label for="monsieur">Monsieur</label>
+      <br id="ip0zp"/>
+      <br id="iv6o5"/>
+      <label for="titre">Titre</label>
+      <br id="ii2gh"/>
+      <input type="text" name="titre" id="titel" max-length="128" class="block-1569769-cid input-style title"/>
+      <br id="iv0wm"/>
+      <br id="i9pr3"/>
+      <label for="prénom">Prénom<span id="iy94l">*</span></label>
+      <br id="iipch"/>
+      <input type="text" name="prenom" id="vorname" max-length="128" required="1" class="block-1569769-cid input-style firstname"/>
+      <br id="incim"/>
+      <br id="iixxk"/>
+      <label for="nom">Nom<span id="iq45o">*</span></label>
+      <br id="ixyd9"/>
+      <input type="text" name="nom" id="name" max-length="128" required="1" class="block-1569769-cid input-style lastname"/>
+      <br id="imj10j"/>
+      <br id="iw8vqr"/>
+      <label for="rue">Rue<span id="iquy9p">*</span> </label>
+      <br id="irqkyj"/>
+      <input type="text" name="rue" id="strasse" max-length="128" required="1" class="block-1569769-cid input-style street"/>
+      <br id="ion095"/>
+      <br id="iloll1"/>
+      <label for="npa">NPA<span id="i89kqu">*</span> </label>
+      <br id="iw7m38"/>
+      <input type="text" name="npa" id="plz" max-length="128" required="1" class="block-1569769-cid input-style postcode"/>
+      <br id="i8oawx"/>
+      <br id="i4kqsh"/>
+      <label for="lieu">Lieu<span id="inst1g">*</span> </label>
+      <br id="in00f5"/>
+      <input type="text" name="lieu" id="ort" max-length="128" required="1" class="block-1569769-cid input-style location"/>
+      <br id="ihsehq"/>
+      <br id="ise4kb"/>
+      <label for="produit">Produit<span id="icxd77">*</span> </label>
+      <br id="igm8qf"/>
+      <input type="text" name="produit" id="produktname" max-length="128" required="1" class="block-1569769-cid input-style productname"/>
+      <br id="ic3frj"/>
+      <br id="ip5fll"/>
+      <label for="type de notification">Type de notification<span id="iqxx39">*</span> </label>
+      <br id="iwa4p9"/>
+      <select id="notification" name="type de notification" class="block-1569769-cid select-style"><option value="Sélectionner" id="i2lwlf">- Sélectionner - </option><option selected="selected" value="Effet indesirable" id="iom48h">Effet indesirable</option><option value="autres evenements indesirables" id="igam3o">autres evenements indesirables</option><option value="reclamation concernant un produit" id="imra2g">reclamation concernant un produit</option></select>
+      <br id="ikkm91"/>
+      <br id="i6d8az"/>
+      <label for="adresse e-mail">Adresse e-mail<span id="im7a74">*</span> </label>
+      <br id="isigf4"/>
+      <input type="email" name="adresse e-mail" max-length="254" id="adresse e-mail" required="1" class="block-1569769-cid input-style email-address"/>
+      <br id="i4uwul"/>
+      <br id="i1emmt"/>
+      <label for="numéro de téléphone">Numéro de téléphone</label>
+      <br id="i2rbrr"/>
+      <input type="number" name="numéro de téléphone" max-length="128" id="telefon" class="block-1569769-cid input-style phonenumber"/>
+      <br id="iy5jy5"/>
+      <br id="ieta7s"/>
+      <label for="">Multi-line text field<span id="iiox7n">*</span></label>
+      <br id="ieuyoo"/>
+      <textarea id="textarea" name="" rows="8" cols="40" required="1" class="block-1569769-cid textfield"></textarea>
+      <br id="iwu5ff"/>
+      <p id="i2zjzg" class="block-1569769-cid tous-text">*Tous les champs marqués d’un astérisque(*) doivent être complétés
+      </p>
+      <p id="isxfoi" class="block-1569769-cid p2"> 
+        <b id="ixulfn">Protection des données
+        </b>
+        <br id="iz941p"/> 
+        <i id="i5s6ex"> Les données qui nous sont fournies sont traitées de manière confidentielle et protégées de toute indiscrétion par des tiers non autorisés, dans le cadre des dispositions légales. En fournissant des données par le biais de ce formulaire, vous acceptez que ces données soient utilisées aux fins prévues. Les données sont destinées à un usage interne (p. ex. intégration dans les banques de données internes internationales, en Suisse ou à l’étranger) et à l’annonce prescrite par les autorités ou la loi aux autorités compétentes nationales et/ou internationales.
+        </i>
+      </p>
+      <h4 id="i9kn8x">Math question
+        <span id="isi6lk">*</span>
+      </h4>
+      <div id="iobx3k">
+        <p id="question">
+        </p>
+        <input type="textbox" required="1" name="answer" id="answer" class="block-1569769-cid answer-input"/>
+        <p id="ioaxfx" class="block-1569769-cid p3">Solve this simple math problem and enter the result. E.g. for 1+3, enter 4.
+        </p>
+      </div>
+      <!-- Error -->
+      <div id="math-error-modal" class="block-1569769-cid w3-modal">
+        <div id="it9czw" class="block-1569769-cid error-modal-content">
+          <div id="irbi0f" class="block-1569769-cid error-container">
+            <div id="result">
+            </div>
+            <span onclick="document.getElementById('math-error-modal').style.display='none'" id="i12vdp" class="block-1569769-cid error-modal-button w3-display-topright">×</span>
+          </div>
+        </div>
+      </div>
+      <!-- Error -->
+      <input type="submit" value="SOUMETTRE" id="submit-button" onclick="document.getElementById('math-error-modal').style.display='block'" class="block-1569769-cid soumettre-btn submit-button"/>
+    </form>
+  </div>
+</div>
